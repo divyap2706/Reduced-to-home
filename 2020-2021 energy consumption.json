@@ -1,0 +1,368 @@
+[
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "U.S. Department of Energy, The Energy Information Administration (EIA)",
+    "newColumnName": "Year",
+    "description": "Rename column U.S. Department of Energy, The Energy Information Administration (EIA) to Year"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Year",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Monthly Fuel Consumption Data by State, Producer Sector and Energy Source; Months Through December 2020"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column Year"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column 2",
+    "newColumnName": "Month",
+    "description": "Rename column Column 2 to Month"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column 3",
+    "newColumnName": "Column",
+    "description": "Rename column Column 3 to Column"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column",
+    "newColumnName": "State",
+    "description": "Rename column Column to State"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column 4",
+    "newColumnName": "Type of Producer",
+    "description": "Rename column Column 4 to Type of Producer"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column 5",
+    "newColumnName": "Energy source",
+    "description": "Rename column Column 5 to Energy source"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Column 6",
+    "newColumnName": "Consumption",
+    "description": "Rename column Column 6 to Consumption"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "join ([coalesce(cells['Month'].value,''),coalesce(cells['Column 7'].value,'')],'')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression join ([coalesce(cells['Month'].value,''),coalesce(cells['Column 7'].value,'')],'')"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Column 7",
+    "description": "Remove column Column 7"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "State",
+    "expression": "join ([coalesce(cells['State'].value,''),coalesce(cells['Column 8'].value,'')],'')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column State using expression join ([coalesce(cells['State'].value,''),coalesce(cells['Column 8'].value,'')],'')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Type of Producer",
+    "expression": "join ([coalesce(cells['Type of Producer'].value,''),coalesce(cells['Column 9'].value,'')],'')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Type of Producer using expression join ([coalesce(cells['Type of Producer'].value,''),coalesce(cells['Column 9'].value,'')],'')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Energy source",
+    "expression": "join ([coalesce(cells['Energy source'].value,''),coalesce(cells['Column 10'].value,'')],'')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Energy source using expression join ([coalesce(cells['Energy source'].value,''),coalesce(cells['Column 10'].value,'')],'')"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Consumption",
+    "expression": "join ([coalesce(cells['Consumption'].value,''),coalesce(cells['Column 11'].value,'')],'')",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Consumption using expression join ([coalesce(cells['Consumption'].value,''),coalesce(cells['Column 11'].value,'')],'')"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Column 8",
+    "description": "Remove column Column 8"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Column 9",
+    "description": "Remove column Column 9"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Column 10",
+    "description": "Remove column Column 10"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Column 11",
+    "description": "Remove column Column 11"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Year",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Monthly Fuel Consumption Data by State, Producer Sector and Energy Source; Months Through January 2021"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column Year"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Year",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "Sources: EIA-923 Report"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column Year"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Year",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [],
+        "fromBlank": true,
+        "fromError": false,
+        "to": ""
+      }
+    ],
+    "description": "Mass edit cells in column Year"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"1.0\",\"1\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"1.0\",\"1\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"2.0\",\"2\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"2.0\",\"2\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"3.0\",\"3\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"3.0\",\"3\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"4.0\",\"4\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"4.0\",\"4\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"5.0\",\"5\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"5.0\",\"5\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"6.0\",\"6\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"6.0\",\"6\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"7.0\",\"7\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"7.0\",\"7\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"8.0\",\"8\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"8.0\",\"8\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"9.0\",\"9\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"9.0\",\"9\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"10.0\",\"10\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"10.0\",\"10\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"11.0\",\"11\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"11.0\",\"11\")"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Month",
+    "expression": "value.replace(\"12.0\",\"12\")",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Month using expression value.replace(\"12.0\",\"12\")"
+  }
+]
