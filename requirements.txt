@@ -1,6 +1,2 @@
 jupyter==1.0.0
 git+git://github.com/VIDA-NYU/openclean.git
-#openclean==0.1.0
-#openclean-geo==0.1.0
-#openclean-metanome==0.1.0
-#openclean-notebook==0.1.3
