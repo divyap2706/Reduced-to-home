@@ -1,2 +1,8 @@
 jupyter==1.0.0
 git+git://github.com/VIDA-NYU/openclean.git
+numpy
+scipy
+matplotlib
+pandas
+altair
+vega_datasets
