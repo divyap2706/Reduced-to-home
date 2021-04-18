@@ -60,6 +60,15 @@ def main():
         "parameter like 'Carbon monoxide' AND sample_duration like '8-HR%'"
     ).select("parameter", "date_local", "units_of_measure", "arithmetic_mean", "aqi")
 
+    # get data for all parameters for 2019 and 2020
+    all_parm_2019_df = air_2019_df.filter(
+        "year(date_local) = 2019 AND aqi IS NOT NULL"
+    ).select("parameter", "date_local", "units_of_measure", "arithmetic_mean", "aqi")
+
+    all_parm_2020_df = air_2020_df.filter(
+        "year(date_local) = 2020 and aqi IS NOT NULL"
+    ).select("parameter", "date_local", "units_of_measure", "arithmetic_mean", "aqi")    
+
     # write output so we can graph it
     co_2020_avg_df.coalesce(1).write.option("header", True).csv(
         "final_project/output_air/co_2020_avg_df.csv"
@@ -81,6 +90,12 @@ def main():
     )
     pm25_local_2020_avg_df.coalesce(1).write.option("header", True).csv(
         "final_project/output_air/pm25_local_2020_avg_df.csv"
+    )
+    all_parm_2019_df.coalesce(1).write.option("header", True).csv(
+        "final_project/output_air/all_parm_2019.csv"
+    )
+    all_parm_2020_df.coalesce(1).write.option("header", True).csv(
+        "final_project/output_air/all_parm_2020.csv"
     )
 
     spark.stop()
