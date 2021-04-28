@@ -71,11 +71,16 @@ def aggregate(df, filter_query, output_name):
     creates a new column called 'month', aggregates the aqi and arithmetic_mean
     by month, then outputs to csv
     """
+    # filter the whole spreadsheet down to just the parameter, year, and columns
+    # that we're interested in
     filtered_df = df.filter(filter_query).select(
         "parameter", "date_local", "units_of_measure", "arithmetic_mean", "aqi"
     )
+    # pull out the unit of measure and parameter name so we can reinsert it
+    # for graphing all the parameters after aggregation
     units = filtered_df.select("units_of_measure").first()["units_of_measure"]
     param = filtered_df.select("parameter").first()["parameter"]
+    # group the data by month, and take the average of the aqi and arithmetic_mean
     agg_df = (
         filtered_df.withColumn("month", date_format(col("date_local"), "M/yyyy"))
         .groupBy("month")
