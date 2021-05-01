@@ -1,6 +1,6 @@
 import sys
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import lit, year, date_format, col
+from pyspark.sql.functions import lit, year, date_format, col, unix_timestamp
 
 
 def main():
@@ -82,7 +82,7 @@ def aggregate(df, filter_query, output_name):
     param = filtered_df.select("parameter").first()["parameter"]
     # group the data by month, and take the average of the aqi and arithmetic_mean
     agg_df = (
-        filtered_df.withColumn("month", date_format(col("date_local"), "M/yyyy"))
+        filtered_df.withColumn("month", date_format(col("date_local"), "yyyy-MM-01"))
         .groupBy("month")
         .agg({"arithmetic_mean": "avg", "aqi": "avg"})
         .withColumnRenamed("avg(aqi)", "aqi")
