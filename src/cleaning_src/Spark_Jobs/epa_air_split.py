@@ -23,6 +23,17 @@ def main():
         .load(sys.argv[1])
     )
 
+    generate_param_sheets(air_df)
+    gen_pm25_for_real_estate(air_df)
+    spark.stop()
+
+
+def generate_param_sheets(air_df):
+    """
+    Handles splitting up the EPA Air data spreadsheet into individual spreadsheets
+    per parameter and per year. Additionally compiles all the parameters' data
+    after transformation into a single sheet for easy visualization
+    """
     # split out the 2019 data
     air_2019_df = air_df.filter(year("date_local") == lit(2019))
     # split out the 2020 data
@@ -63,13 +74,61 @@ def main():
     to_csv(all_parms_2019_df, "all_parms_2019_df")
     to_csv(all_parms_2020_df, "all_parms_2020_df")
 
-    spark.stop()
+
+def gen_pm25_for_real_estate(air_df):
+    """
+    creates a spreadsheet of the PM2.5 parameter data so that
+    the 2019 data can be easily visualized against the 2020 data
+    """
+    pm25_local_df = air_df.filter(
+        "parameter like 'PM2.5 - Local%' AND sample_duration like '24 HOUR'"
+    ).select("parameter", "date_local", "aqi")
+    pm25_acc_df = air_df.filter(
+        "parameter like 'Acceptable PM2.5%' AND sample_duration like '24-HR%'"
+    ).select("parameter", "date_local", "aqi")
+
+    local_param_name = pm25_local_df.select("parameter").first()["parameter"]
+    acc_param_name = pm25_acc_df.select("parameter").first()["parameter"]
+
+    pm25_local_agg = (
+        pm25_local_df.withColumn(
+            "yearmonth", date_format(col("date_local"), "yyyy-MM-01")
+        )
+        .groupBy("yearmonth")
+        .agg({"aqi": "avg"})
+        .withColumnRenamed("avg(aqi)", "aqi")
+        .withColumn("parameter", lit(local_param_name))
+        .withColumn("year", date_format(col("yearmonth"), "yyyy"))
+        .withColumn("month", date_format(col("yearmonth"), "M"))
+    )
+    pm25_acc_agg = (
+        pm25_acc_df.withColumn(
+            "yearmonth", date_format(col("date_local"), "yyyy-MM-01")
+        )
+        .groupBy("yearmonth")
+        .agg({"aqi": "avg"})
+        .withColumnRenamed("avg(aqi)", "aqi")
+        .withColumn("parameter", lit(acc_param_name))
+        .withColumn("year", date_format(col("yearmonth"), "yyyy"))
+        .withColumn("month", date_format(col("yearmonth"), "M"))
+    )
+    to_csv(pm25_local_agg.union(pm25_acc_agg), "pm25_aggregated")
+
+
+def agg_pm25(frames):
+    """
+    aggregates the PM2.5 parameters over 2019 and 2020 so that they can be
+    compared against each other
+    """
+    pass
 
 
 def aggregate(df, filter_query, output_name):
     """
     creates a new column called 'month', aggregates the aqi and arithmetic_mean
     by month, then outputs to csv
+
+    returns the new aggregated dataframe
     """
     # filter the whole spreadsheet down to just the parameter, year, and columns
     # that we're interested in
