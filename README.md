@@ -22,6 +22,7 @@ Finally, there is a .pdf with the report describing this project located at Big-
 
 Requirements:
 All of the required python libaries are located in requirements.txt. Before running any code, open the terminal on your local machine and run:
+
 pip install -r requirements.txt
 
 In order to run each of the Notebooks, make sure to edit the string containing the file path to the original dataset, so that it correpsonds to the file path of the dataset in YOUR local directory. Additonally, ensure that the string for the output file path is edited so that it uses YOUR local directory. 
