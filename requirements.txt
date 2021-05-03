@@ -6,3 +6,4 @@ matplotlib
 pandas
 altair
 vega_datasets
+pyspark
