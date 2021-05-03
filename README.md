@@ -20,6 +20,7 @@ There is also a folder that contains the cleaned and wrangled datasets, just for
 
 Finally, there is a .pdf with the report describing this project located at Big-Data-Project-X/reports/. There is also a subfolder with the figures created for the report. 
 
+
 Requirements:
 
 All of the required python libaries are located in requirements.txt. Before running any code, open the terminal on your local machine and run:
