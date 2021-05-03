@@ -90,37 +90,30 @@ def gen_pm25_for_real_estate(air_df):
     local_param_name = pm25_local_df.select("parameter").first()["parameter"]
     acc_param_name = pm25_acc_df.select("parameter").first()["parameter"]
 
-    pm25_local_agg = (
-        pm25_local_df.withColumn(
-            "yearmonth", date_format(col("date_local"), "yyyy-MM-01")
-        )
-        .groupBy("yearmonth")
-        .agg({"aqi": "avg"})
-        .withColumnRenamed("avg(aqi)", "aqi")
-        .withColumn("parameter", lit(local_param_name))
-        .withColumn("year", date_format(col("yearmonth"), "yyyy"))
-        .withColumn("month", date_format(col("yearmonth"), "M"))
+    pm25_agg = agg_pm25(pm25_local_df, local_param_name).union(
+        agg_pm25(pm25_acc_df, acc_param_name)
     )
-    pm25_acc_agg = (
-        pm25_acc_df.withColumn(
-            "yearmonth", date_format(col("date_local"), "yyyy-MM-01")
-        )
-        .groupBy("yearmonth")
-        .agg({"aqi": "avg"})
-        .withColumnRenamed("avg(aqi)", "aqi")
-        .withColumn("parameter", lit(acc_param_name))
-        .withColumn("year", date_format(col("yearmonth"), "yyyy"))
-        .withColumn("month", date_format(col("yearmonth"), "M"))
-    )
-    to_csv(pm25_local_agg.union(pm25_acc_agg), "pm25_aggregated")
+
+    to_csv(pm25_agg, "pm25_aggregated")
 
 
-def agg_pm25(frames):
+def agg_pm25(filtered_frame, param_name):
     """
     aggregates the PM2.5 parameters over 2019 and 2020 so that they can be
     compared against each other
     """
-    pass
+    agg_frame = (
+        filtered_frame.withColumn(
+            "yearmonth", date_format(col("date_local"), "yyyy-MM-01")
+        )
+        .groupBy("yearmonth")
+        .agg({"aqi": "avg"})
+        .withColumnRenamed("avg(aqi)", "aqi")
+        .withColumn("parameter", lit(param_name))
+        .withColumn("year", date_format(col("yearmonth"), "yyyy"))
+        .withColumn("month", date_format(col("yearmonth"), "M"))
+    )
+    return agg_frame
 
 
 def aggregate(df, filter_query, output_name):
@@ -141,13 +134,17 @@ def aggregate(df, filter_query, output_name):
     param = filtered_df.select("parameter").first()["parameter"]
     # group the data by month, and take the average of the aqi and arithmetic_mean
     agg_df = (
-        filtered_df.withColumn("month", date_format(col("date_local"), "yyyy-MM-01"))
-        .groupBy("month")
+        filtered_df.withColumn(
+            "date_month", date_format(col("date_local"), "yyyy-MM-01")
+        )
+        .groupBy("date_month")
         .agg({"arithmetic_mean": "avg", "aqi": "avg"})
         .withColumnRenamed("avg(aqi)", "aqi")
         .withColumnRenamed("avg(arithmetic_mean)", "arithmetic_mean")
         .withColumn("units_of_measure", lit(units))
         .withColumn("parameter", lit(param))
+        .withColumn("year", date_format(col("date_month"), "yyyy"))
+        .withColumn("month", date_format(col("date_month"), "M"))
     )
     to_csv(agg_df, output_name)
     return agg_df
