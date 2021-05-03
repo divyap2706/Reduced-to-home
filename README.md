@@ -13,14 +13,14 @@ There are 3 main stages to reproduce the results in the paper:
 3. Data Analysis/Visualization: This is split into two folders, Big-Data-Project-X/src/analysis_src/ and Big-Data-Project-X/src/vis_src/. Each of these folders have their own respective README files, explplaining the necessary steps to run the code. If the data needed extra massaging before beiing visualized, Big-Data-Project-X/src/analysis_src/ was used to create aggregated data files. The visualizations were created using Altair, D3, and Tableau. Extra spatial data was required to create a spatial visualizaations in Tableau. This data can be found in Big-Data-Project-X/data/Spatial_Data_For_Tableau_Viz/.
 
 
-##General info:
+## General info:
 
 There is also a folder that contains the cleaned and wrangled datasets, just for reference. 
 
 Finally, there is a .pdf with the report describing this project located at Big-Data-Project-X/reports/. There is also a subfolder with the figures created for the report. 
 
 
-##Requirements:
+## Requirements:
 
 All of the required python libaries are located in requirements.txt. Before running any code, open the terminal on your local machine and run:
 ```
