@@ -20,7 +20,7 @@ Install Required modules.<br/>
 
 ## Execution
 Once all the required modules have been imported, the script can be run with:<br/>
-`python -m epa_air`
+`python -m epa_air_analysis`
 
 ## Outputs
 Currently the script outputs a single CSV file titled `epa_aqs_air_AQI-POLLUTANTS_2019-2020.csv`
