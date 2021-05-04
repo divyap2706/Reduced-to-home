@@ -43,6 +43,7 @@ def generate_param_sheets(air_df):
         "pm25a_2019_avg_df": "parameter like 'Acceptable PM2.5%' AND year(date_local) = 2019 AND sample_duration like '24-HR%'",
         "ozone_2019_avg_df": "parameter like 'Ozone' AND year(date_local) = 2019 AND sample_duration like '%8-HR%'",
         "pm25_local_2019_avg_df": "parameter like 'PM2.5 - Local%' AND year(date_local) = 2019 AND sample_duration like '24 HOUR'",
+        "pm10_2019_avg_df": "parameter like 'PM10%' AND year(date_local) = 2019 AND sample_duration like '24 HOUR'"
         # "all_parm_2019_df": "year(date_local) = 2019 AND aqi IS NOT NULL",
     }
     outputs_2020 = {
@@ -50,6 +51,7 @@ def generate_param_sheets(air_df):
         "ozone_2020_avg_df": "parameter like 'Ozone' AND year(date_local) = 2020 AND sample_duration like '%8-HR%'",
         "pm25_local_2020_avg_df": "parameter like 'PM2.5 - Local%' AND year(date_local) = 2020 AND sample_duration like '24 HOUR'",
         "co_2020_avg_df": "parameter like 'Carbon monoxide' AND sample_duration like '8-HR%'",
+        "pm10_2020_avg_df": "parameter like 'PM10%' AND year(date_local) = 2020 AND sample_duration like '24 HOUR'"
         # "all_parm_2020_df": "year(date_local) = 2020 and aqi IS NOT NULL",
     }
 
