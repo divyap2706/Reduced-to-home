@@ -9,13 +9,13 @@ def main():
     and splits them into individual csv files per year and parameter type
 
     example command to call this script from HDFS:
-    spark-submit final_project/src/epa_air_split.py /user/ab7289/final_project/epa_aqs_air_AQI-POLLUTANTS_2019-2020.csv
+    spark-submit final_project/src/epa_air_analysis.py /user/ab7289/final_project/epa_aqs_air_AQI-POLLUTANTS_2019-2020.csv
     """
     if len(sys.argv) != 2:
-        print("Usage: epa_air_split.py <file", sys.stderr)
+        print("Usage: epa_air_analysis.py <file", sys.stderr)
         exit(-1)
 
-    spark = SparkSession.builder.appName("EPA AIR Splitter").getOrCreate()
+    spark = SparkSession.builder.appName("EPA AIR Analysis").getOrCreate()
 
     air_df = (
         spark.read.format("csv").options(inferSchema="true", header="true")
