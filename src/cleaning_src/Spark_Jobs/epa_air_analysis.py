@@ -158,7 +158,7 @@ def to_csv(df, output_name):
     a csv file in the final_rpoject/output_air/ directory
     """
     df.coalesce(1).write.option("header", True).csv(
-        "final_project/output_air/{}.csv".format(output_name)
+        "epa_air/{}.csv".format(output_name)
     )
 
 
