@@ -1,6 +1,6 @@
 # Requirements
 ## Spark job files
-Priot to submitting the sparkk job, make sure that the machine or cluster you are using has the libraries which are needed by running:
+Prior to submitting the spark job, make sure that the machine or cluster you are using has the libraries which are needed by running:
 ```
 pip install -r requirements.txt
 ```
