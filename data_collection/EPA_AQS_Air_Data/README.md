@@ -23,4 +23,4 @@ Once all the required modules have been imported, the script can be run with:<br
 `python -m epa_air_analysis`
 
 ## Outputs
-Currently the script outputs a single CSV file titled `epa_aqs_air_AQI-POLLUTANTS_2019-2020.csv`
+Currently the script outputs a single CSV file titled `epa_aqs_air_AQI-POLLUTANTS_2019-2020.csv`. This csv should be uploaded to HDFS for processing by the `epa_air_analysis.py` PySpark job stored in the `src/cleaning_src/Spark_Jobs` folder.
