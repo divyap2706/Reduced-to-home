@@ -1,4 +1,4 @@
-# Big-Data-Project-X
+# Reduced to home
 
 This project aims to examine the effects of the COVID-19 pandemic on the environment, and specifially the environment in and around NYC. 
 
